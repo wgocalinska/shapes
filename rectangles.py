@@ -3,6 +3,7 @@ import math
 from shape import Shape
 
 
+
 class Rectangle(Shape):
     """
     Rectangular shape.
@@ -50,9 +51,28 @@ class Rhombus(Parallelogram):
     def __init__(self, a , h ):
         super().__init__(a, a, h)
 
+class Trapeze(Parallelogram):
 
+    def __init__(self, a, b, h, a2):
+        super().__init__(a, b, h)
+        self.a2 = a2
 
-class Elipse(Shape):
+    def area(self):
+        return round(0.5*(self.a + self.a2) * self.h)
+
+    def perimeter(self):
+        x = (self.b ** 2 - self.h ** 2) ** 0.5
+        try:
+            if x > 0:
+                y = self.a2 - x
+                d = (y ** 2 + self.h ** 2) ** 0.5
+                return round(self.a + self.b + self.a2 + d)
+            elif x ==0:
+                return round(self.a + self.b + self.a2 + self.h)
+        except TypeError:
+            print("such trapeze does not exist")
+
+class Ellipse(Shape):
 
     def __init__(self, r, b):
         super().__init__()
@@ -60,15 +80,23 @@ class Elipse(Shape):
         self.b = b
 
     def area(self):
-        return math.pi * self.r * self.b
+        return round(math.pi * self.r * self.b)
 
     def perimeter(self):
-        a = float(3/2)
-        return math.pi * [a * (self.r + self.b) - math.sqrt(self.r*self.b)]
+        return round(math.pi * (3/2 * (self.r + self.b) - math.sqrt(self.r*self.b)))
 
 
-class Circle(Elipse):
+class Circle(Ellipse):
 
     def __init__(self, r):
         super().__init__(r, r)
+
+    def draw(self):
+        plt.close('all')
+        circle = plt.Circle((0, 0), self.r)
+        fig1 = plt.figure()
+        ax1 = fig1.add_subplot(111)
+        ax1.add_artist(circle)
+        ax1.margins(10)
+        plt.show()
 

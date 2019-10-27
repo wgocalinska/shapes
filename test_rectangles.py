@@ -2,7 +2,7 @@ import unittest
 
 import rectangles
 
-class TestRectangles(unittest.Testcase):
+class TestRectangles(unittest.TestCase):
 
     def setUp(self):
         print("SetUp")
@@ -17,7 +17,7 @@ class TestRectangles(unittest.Testcase):
         rect = rectangles.Square(2)
         data = rect.summary()
         self.assertEqual(4.,data['area'])
-        self.assertEqual(9.,data['perimeter'])
+        self.assertEqual(8.,data['perimeter'])
 
     def test_Paral(self):
         rect = rectangles.Parallelogram(6, 8, 9)
@@ -31,14 +31,20 @@ class TestRectangles(unittest.Testcase):
         self.assertEqual(42.,data['area'])
         self.assertEqual(24.,data['perimeter'])
 
-    def test_Elipse(self):
-        rect = rectangles.Elipse(2, 3)
+    def test_Trapeze(self):
+        rect = rectangles.Trapeze(4,8,6,10)
         data = rect.summary()
-        self.assertEqual(19.,data['area'])
-        self.assertEqual(24.,data['perimeter'])
+        self.assertEqual(42.,data['area'])
+        self.assertEqual(30.,data['perimeter'])
+
+    def test_Ellipse(self):
+        rect = rectangles.Ellipse(6,5)
+        data = rect.summary()
+        self.assertEqual(94.,data['area'])
+        self.assertEqual(35.,data['perimeter'])
 
     def test_Circle(self):
         rect = rectangles.Circle(6)
         data = rect.summary()
         self.assertEqual(113.,data['area'])
-        self.assertEqual(24.,data['perimeter'])
+        self.assertEqual(38.,data['perimeter'])

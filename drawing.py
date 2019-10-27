@@ -2,8 +2,10 @@ import matplotlib as plt
 import main
 
 
-fig = plt.figure()
-square = fig.patch
-ax1 = fig.add_axes(len(main.Square()))
-square = ax1.patch
+
+x = 2
+y = 2
+plt.plot(x, y)
+plt.grid(True)
+plt.title("Square")
 plt.show()
